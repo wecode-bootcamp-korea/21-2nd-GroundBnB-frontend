@@ -25,12 +25,20 @@
       }
     ],
     "prettier/prettier": ["error"],
-    "no-unused-vars": 1,
     "no-unused-expressions": [
       2,
       { "allowShortCircuit": true, "allowTernary": true }
     ],
+
     "react/prop-types": "off",
-    "consistent-return": "off"
+    "consistent-return": "off",
+    "no-console": 1,
+    "no-unused-vars": 1,
+    "object-curly-newline": 0,
+    "react/no-array-index-key": 0,
+    "react/jsx-one-expression-per-line": 0,
+    "operator-linebreak": 0,
+    "react/jsx-closing-tag-location": 0
+
   }
 }

@@ -1,0 +1,131 @@
+/* .DayPicker_transitionContainer {
+  background-color: #fff;
+} */
+
+.DayPickerKeyboardShortcuts_buttonReset {
+  display: none;
+}
+
+.DayPicker_weekHeader:nth-child(1) {
+  margin-left: 5px;
+}
+
+.DayPicker_weekHeader:nth-child(2) {
+  margin-left: 8px;
+}
+
+/* .DayPicker_weekHeader {
+  background-color: #fff;
+} */
+
+.CalendarMonth,
+.DayPicker_weekHeader,
+.DayPickerNavigation_button {
+  /* background-color: #fff; */
+  transform: translateX(-20px);
+}
+
+tr {
+  height: 40px;
+  /* background-color: #fff; */
+}
+
+td {
+  width: 40px;
+  height: 100%;
+  /* background-color: #fff; */
+}
+
+.DayPicker__withBorder {
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.CalendarMonthGrid {
+  background: none;
+}
+
+.DayPickerNavigation_button {
+  border: none;
+}
+
+.DayPickerNavigation_button svg {
+  /* display: none; */
+}
+
+.CalendarDay__default {
+  border: none;
+  border-radius: 50%;
+  vertical-align: middle;
+  outline: none;
+  background: none;
+}
+
+.CalendarDay__default:hover {
+  border: none;
+  /* border-radius: 50%;  */
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+  background: none;
+}
+
+.CalendarDay__selected_span {
+  background-color: #f7f7f7;
+  border: none;
+  border-radius: 0;
+  color: black;
+  font-weight: 600;
+}
+
+.CalendarDay__selected_span:active,
+.CalendarDay__selected_span:hover {
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+/* // 선택된 체크인 체크아웃 날짜에 대한 스타일 */
+.CalendarDay__selected,
+.CalendarDay__selected:active,
+.CalendarDay__selected:hover {
+  background: black;
+  border: none;
+  color: white;
+}
+
+/* // 블록된 날짜에 대한 스타일링 */
+.CalendarDay__blocked_calendar,
+.CalendarDay__blocked_calendar:active,
+.CalendarDay__blocked_calendar:hover {
+  background: white;
+  border: none;
+  color: #d2d2d2;
+  box-shadow: none;
+  text-decoration: line-through;
+}
+
+/* // 선택될 범위에 대한 스타일링 */
+.CalendarDay__hovered_span,
+.CalendarDay__hovered_span:hover {
+  color: black;
+  background-color: #f7f7f7;
+  border: none;
+}
+
+/* // 요일 표시 부분에 대한 스타일. */
+.CalendarMonth_caption {
+  margin: 5px 0 10px 0;
+  background-color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.DayPicker_weekHeader_ul {
+  background-color: #fff;
+  z-index: -10;
+}
+
+.DayPicker_weekHeader_li {
+  background-color: #fff;
+  z-index: -10;
+}

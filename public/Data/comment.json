@@ -1,0 +1,124 @@
+{
+  "reviews": {
+    "room_id": 1,
+    "reviews_count": 3,
+    "point_average": 3.16,
+    "login_user_info": {
+      "user_id": 1,
+      "user_name": "김한주",
+      "host_auth": 0,
+      "reply_auth": 1
+    },
+    "point": [
+      {
+        "id": 1,
+        "name": "청결도",
+        "point": 3.06
+      },
+      {
+        "id": 2,
+        "name": "정확성",
+        "point": 2.76
+      },
+      {
+        "id": 3,
+        "name": "의사소통",
+        "point": 3.28
+      },
+      {
+        "id": 4,
+        "name": "위치",
+        "point": 3.58
+      },
+      {
+        "id": 5,
+        "name": "체크인",
+        "point": 3.48
+      },
+      {
+        "id": 6,
+        "name": "가격 대비 만족도",
+        "point": 2.82
+      }
+    ],
+    "comment": [
+      {
+        "review_id": 13,
+        "user_id": 1,
+        "profile_image": "test.jpg",
+        "user_name": "안녕하세요",
+        "mine_comment": 0,
+        "content": "삭제된 메세지 입니다.",
+        "depth": 1,
+        "group": 13,
+        "created_at": "2021-06-26"
+      },
+      {
+        "review_id": 12,
+        "user_id": 4,
+        "profile_image": "",
+        "user_name": "하이",
+        "mine_comment": 0,
+        "content": "와 짱이에요12",
+        "depth": 2,
+        "group": 13,
+        "created_at": "2021-06-26"
+      },
+      {
+        "review_id": 2,
+        "user_id": 8,
+        "user_name": "성한이",
+        "profile_image": "",
+        "mine_comment": 0,
+        "content": "ㅁㄴㅇㄹ",
+        "depth": 1,
+        "group": 1,
+        "created_at": "2021-06-28"
+      },
+      {
+        "review_id": 3,
+        "user_id": 4,
+        "user_name": "안녕",
+        "profile_image": "",
+        "mine_comment": 1,
+        "content": "ㅇㄹㅇㄹㅇㄹ",
+        "depth": 2,
+        "group": 1,
+        "created_at": "2021-06-28"
+      },
+      {
+        "review_id": 4,
+        "user_id": 5,
+        "user_name": "안녕안녕",
+        "profile_image": "",
+        "mine_comment": 0,
+        "content": "ㅁㅂㅈㄷㅇㅈ",
+        "depth": 2,
+        "group": 1,
+        "created_at": "2021-06-28"
+      },
+      {
+        "review_id": 11,
+        "user_id": 3,
+        "profile_image": "",
+        "user_name": "넵",
+        "mine_comment": 1,
+        "content": "와 짱이에요11",
+        "depth": 1,
+        "group": 11,
+        "created_at": "2021-06-26"
+      },
+      {
+        "review_id": 10,
+        "user_id": 2,
+        "profile_image": "",
+        "user_name": "asdf",
+        "mine_comment": 0,
+        "content": "와 짱이에요11",
+        "depth": 2,
+        "group": 11,
+        "created_at": "2021-06-26"
+      }
+    ]
+  }
+}
