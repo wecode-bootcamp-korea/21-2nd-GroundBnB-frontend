@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "서울",
+    "imgSrc": "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-1.jpg",
+    "text": "차로 1시간 거리"
+  },
+  {
+    "id": 2,
+    "name": "양영군",
+    "imgSrc": "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-2.jpg",
+    "text": "차로 2시간 거리"
+  },
+  {
+    "id": 3,
+    "name": "제주도",
+    "imgSrc": "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-5.jpg",
+    "text": "차로 3시간 거리"
+  },
+  {
+    "id": 4,
+    "name": "부산",
+    "imgSrc": "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-6.jpg",
+    "text": "차로 4시간 거리"
+  },
+  {
+    "id": 5,
+    "name": "속초시",
+    "imgSrc": "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-7.jpg",
+    "text": "차로 5시간 거리"
+  },
+  {
+    "id": 6,
+    "name": "완주군",
+    "imgSrc": "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-8.jpg",
+    "text": "차로 5시간 거리"
+  },
+  {
+    "id": 7,
+    "name": "속초시",
+    "imgSrc": "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-7.jpg",
+    "text": "차로 5시간 거리"
+  },
+  {
+    "id": 8,
+    "name": "완주군",
+    "imgSrc": "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-8.jpg",
+    "text": "차로 5시간 거리"
+  }
+]
