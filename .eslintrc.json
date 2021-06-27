@@ -4,7 +4,11 @@
     "es2021": true,
     "node": true
   },
-  "extends": ["plugin:react/recommended", "airbnb"],
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:prettier/recommended"
+  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -20,6 +24,11 @@
         "extensions": [".js", ".jsx"]
       }
     ],
-    "no-console": 1
+    "prettier/prettier": ["error"],
+    "no-unused-vars": 1,
+    "no-unused-expressions": [
+      2,
+      { "allowShortCircuit": true, "allowTernary": true }
+    ]
   }
 }
