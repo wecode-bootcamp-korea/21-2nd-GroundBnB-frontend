@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ReactComponent as LanguageSvg } from '../../images/language.svg';
 
-const footerTop = [
+const FOOTER_TOP = [
   {
     title: '소개',
     contents: [
@@ -54,7 +54,7 @@ const footerTop = [
   },
 ];
 
-const footerBottom = [
+const FOOTER_BOTTOM = [
   '© 2021 Airbnb, Inc.',
   '개인 정보 처리방침',
   '이용약관',
@@ -66,12 +66,12 @@ const footerBottom = [
 const Footer = () => (
   <FooterWrap>
     <FooterTop>
-      {footerTop.map((footer) => (
+      {FOOTER_TOP.map((footer) => (
         <FTopSection>
           <h4>{footer.title}</h4>
           <ul>
-            {footer.contents.map((content) => (
-              <FTopLi key={content}>
+            {footer.contents.map((content, i) => (
+              <FTopLi key={`${content + i}`}>
                 <Link to="/main">{content}</Link>
               </FTopLi>
             ))}
@@ -82,8 +82,8 @@ const Footer = () => (
     <FooterBottom>
       <FBottomSection>
         <LContentUl>
-          {footerBottom.map((footer) => (
-            <LContentLi>
+          {FOOTER_BOTTOM.map((footer, i) => (
+            <LContentLi key={`${footer + i}`}>
               <LContentLink to="/main">{footer}</LContentLink>
             </LContentLi>
           ))}
