@@ -64,15 +64,15 @@ function Main() {
                 <FourthLink to="/main">
                   <FourthCard>
                     <FourthImg
-                      src="https://a0.muscache.com/im/pictures/247a1ea3-946d-4eb8-a6ab-e8b9a66846f4.jpg?im_w=720"
+                      src="https://images.unsplash.com/photo-1536104968055-4d61aa56f46a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2600&q=80"
                       alt="person"
                     />
                     <FourthCardTxtWrap>
                       <FourthCardTitle>
-                        추천 컬렉션: 여행 본능을 깨우는 체험
+                        추천 컬렉션: 새벽 코딩을 깨우치는 체험
                       </FourthCardTitle>
                       <FourthSubtilte>
-                        온라인 체험으로 집에서 랜선 여행을 즐기세요.
+                        온라인 체험으로 집에서 밤샘 코딩을 즐기세요.
                       </FourthSubtilte>
                     </FourthCardTxtWrap>
                   </FourthCard>
@@ -84,15 +84,15 @@ function Main() {
                 <FourthLink to="/main">
                   <FourthCard>
                     <FourthImg
-                      src="https://a0.muscache.com/im/pictures/247a1ea3-946d-4eb8-a6ab-e8b9a66846f4.jpg?im_w=720"
+                      src="https://images.unsplash.com/photo-1554306274-f23873d9a26c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
                       alt="person"
                     />
                     <FourthCardTxtWrap>
                       <FourthCardTitle>
-                        추천 컬렉션: 여행 본능을 깨우는 체험
+                        추천 컬렉션: 불꽃 코딩 체험
                       </FourthCardTitle>
                       <FourthSubtilte>
-                        온라인 체험으로 집에서 랜선 여행을 즐기세요.
+                        온라인 체험으로 집에서 코딩 여행을 즐기세요.
                       </FourthSubtilte>
                     </FourthCardTxtWrap>
                   </FourthCard>
@@ -104,15 +104,15 @@ function Main() {
                 <FourthLink to="/main">
                   <FourthCard>
                     <FourthImg
-                      src="https://a0.muscache.com/im/pictures/247a1ea3-946d-4eb8-a6ab-e8b9a66846f4.jpg?im_w=720"
+                      src="https://images.unsplash.com/photo-1604208485423-f19bc2aaae2d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2700&q=80"
                       alt="person"
                     />
                     <FourthCardTxtWrap>
                       <FourthCardTitle>
-                        추천 컬렉션: 여행 본능을 깨우는 체험
+                        추천 컬렉션: 코딩 본능을 깨우는 체험
                       </FourthCardTitle>
                       <FourthSubtilte>
-                        온라인 체험으로 집에서 랜선 여행을 즐기세요.
+                        온라인 체험으로 집에서 코딩 두통을 즐기세요.
                       </FourthSubtilte>
                     </FourthCardTxtWrap>
                   </FourthCard>
@@ -310,6 +310,7 @@ const FourthCard = styled.div`
 
 const FourthImg = styled.img`
   width: 100%;
+  height: 200px;
   object-fit: cover;
   border-radius: 8px;
 `;

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import WhereResult from './LocationResult/LocationResult';
+import { GET_SEARCHED_ROOMS_API } from '../../../../config';
+import LocationResult from './LocationResult/LocationResult';
 
 const LocationInput = ({ setInputValue }) => {
   const [place, setPlace] = useState('');
-  const [filterResult, setFilterResult] = useState([]);
+  const [filteredResult, setFilterResult] = useState([]);
   const [isResultShow, setIsResultShow] = useState(false);
 
   const toggleWhereShow = () => {
@@ -26,17 +27,17 @@ const LocationInput = ({ setInputValue }) => {
     setInputValue(value);
     setIsResultShow(value.length > 0);
 
-    fetch('http://localhost:3000/data/whereData.json', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem('token'),
-      },
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        setFilterResult(result);
-      });
+    value.length &&
+      fetch(`${GET_SEARCHED_ROOMS_API}/searchword?search=${value}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          setFilterResult(result.result);
+        });
   };
 
   return (
@@ -56,10 +57,10 @@ const LocationInput = ({ setInputValue }) => {
         </WhereContent>
       </WhereWrap>
       {isResultShow && (
-        <WhereResult
+        <LocationResult
           toggleWhereShow={toggleWhereShow}
           defaultLi={place.length === 0}
-          data={filterResult}
+          datas={filteredResult}
           selectedRegion={selectedRegion}
         />
       )}

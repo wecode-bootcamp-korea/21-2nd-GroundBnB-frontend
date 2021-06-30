@@ -40,6 +40,15 @@ function SearchBox({ isSearch, toggleSearchOpen }) {
     );
 
     toggleSearchOpen();
+    setCheckDate({
+      checkIn: '',
+      checkOut: '',
+    });
+    setPerson({
+      adult: 0,
+      child: 0,
+      baby: 0,
+    });
   };
 
   return (

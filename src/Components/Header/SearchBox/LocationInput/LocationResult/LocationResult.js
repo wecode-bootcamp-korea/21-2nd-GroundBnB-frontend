@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const LocationResult = ({
   defaultLi,
-  data,
+  datas,
   selectedRegion,
   toggleWhereShow,
 }) => {
@@ -21,16 +21,18 @@ const LocationResult = ({
             </WLiContent>
           </WhereLi>
         ) : (
-          data.map((item) => (
-            <WhereLi key={item.id}>
-              <WLiContent>
-                <Marker>
-                  <MarkerIcon className="fas fa-map-marker-alt" />
-                </Marker>
-                <WhereP onClick={selectedRegion}>{item.region}</WhereP>
-              </WLiContent>
-            </WhereLi>
-          ))
+          datas?.map((item) => {
+            return (
+              <WhereLi key={item}>
+                <WLiContent>
+                  <Marker>
+                    <MarkerIcon className="fas fa-map-marker-alt" />
+                  </Marker>
+                  <WhereP onClick={selectedRegion}>{item}</WhereP>
+                </WLiContent>
+              </WhereLi>
+            );
+          })
         )}
       </WhereUl>
     </WhereResultWrap>
@@ -38,7 +40,7 @@ const LocationResult = ({
 };
 
 LocationResult.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  datas: PropTypes.arrayOf(PropTypes.string).isRequired,
   defaultLi: PropTypes.bool.isRequired,
   selectedRegion: PropTypes.func.isRequired,
 };

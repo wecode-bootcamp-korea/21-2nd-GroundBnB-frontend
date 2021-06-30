@@ -26,15 +26,14 @@ export default Card;
 const CardWrap = styled.div`
   width: 200px;
   border-radius: 12px;
-  box-shadow: rgb(0 0 0 / 28%) 0px 8px 28px;
   color: rgb(34, 34, 34);
   cursor: pointer;
 `;
 
 const Slider = styled.div`
   img {
-    width: 100%;
-    object-fit: cover;
+    width: 200px;
+    height: 200px;
   }
 `;
 
