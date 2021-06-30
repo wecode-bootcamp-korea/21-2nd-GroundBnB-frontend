@@ -34,25 +34,11 @@ function SearchBox({ isSearch, toggleSearchOpen }) {
 
   const submitSearch = (e) => {
     e.preventDefault();
-    history.push({
-      pathname: `/result`,
-      state: { reservation: { inputValue, ...person, ...checkDate } },
-    });
-    // fetch(
-    //   `api?region=${inputValue}"&checkIn=${checkDate.checkIn}&checkOut=${checkDate.checkOut}&adult=${person.adult}&child=${person.child}&baby=${person.baby}`,
-    //   {
-    //     method: 'GET',
-    //     headers: {},
-    //   },
-    // )
-    //   .then((res) => res.json())
-    //   .then((result) => {
-    //     // history.push({
-    //     //   pathname: `/result?region=${inputValue}"&checkIn=${checkDate.checkIn}&checkOut=${checkDate.checkOut}&adult=${person.adult}&child=${person.child}&baby=${person.baby}`,
-    //     //   state: { person },
-    //     // });
 
-    //   });
+    history.push(
+      `/result?search=${inputValue}&checkIn=${checkDate.checkIn}&checkOut=${checkDate.checkOut}&adult=${person.adult}&child=${person.child}&baby=${person.baby}`,
+    );
+
     toggleSearchOpen();
   };
 
@@ -88,7 +74,7 @@ function SearchBox({ isSearch, toggleSearchOpen }) {
                   plusCount={plusCount}
                   minusCount={minusCount}
                 />
-                <SearchBarBtn>
+                <SearchBarBtn type="submit">
                   <SearchSubmitIcon className="fas fa-search" fontSize={20} />
                 </SearchBarBtn>
               </SearchBar>

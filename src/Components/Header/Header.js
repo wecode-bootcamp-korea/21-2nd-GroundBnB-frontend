@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { ReactComponent as UserSvg } from '../../images/usericon.svg';
 import { ReactComponent as MenuSvg } from '../../images/hamburger.svg';
 import { ReactComponent as LanguageSvg } from '../../images/language.svg';
-import { ReactComponent as LogoSvg } from '../../images/logo.svg';
+import { ReactComponent as GroundSvg } from '../../images/groundbnb.svg';
 
 import SearchBox from './SearchBox/SearchBox';
 import DropMenu from './DropMenu/DropMenu';
@@ -95,7 +95,7 @@ function Header() {
       <FixedHeader>
         <FlexWrap>
           <LogoLink to="/main">
-            <LogoSvg />
+            <GroundSvg />
           </LogoLink>
 
           <SearchBox isSearch={isSearch} toggleSearchOpen={toggleSearchOpen} />
