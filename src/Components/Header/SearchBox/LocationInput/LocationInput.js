@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+<<<<<<< HEAD
 import { GET_SEARCHED_ROOMS_API } from '../../../../config';
+=======
+import { GET_INPUTTED_ROOMS_API } from '../../../../config';
+>>>>>>> 6cc0773 (Modify :검색바인풋창 데이터 실시간 db연동 test 성공)
 import LocationResult from './LocationResult/LocationResult';
 
 const LocationInput = ({ setInputValue }) => {
@@ -28,7 +32,7 @@ const LocationInput = ({ setInputValue }) => {
     setIsResultShow(value.length > 0);
 
     value.length &&
-      fetch(`${GET_SEARCHED_ROOMS_API}/searchword?search=${value}`, {
+      fetch(`${GET_INPUTTED_ROOMS_API}?search=${value}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
