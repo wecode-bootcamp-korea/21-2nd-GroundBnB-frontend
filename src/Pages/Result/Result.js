@@ -1,14 +1,34 @@
-import React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { API } from '../../config';
+import Map from '../../Components/Map/Map';
 
 function Result() {
-  const history = useHistory();
   const location = useLocation();
+  const [roomData, setRoomData] = useState([]);
 
-  console.log('history', history);
-  console.log('location', location);
+  useEffect(() => {
+    fetch(`${API}/rooms${location.search}`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        setRoomData(result.rooms.rooms);
+      });
+  }, [location.search]);
 
-  return <div>Result</div>;
+  // Mock Data fetch
+  // useEffect(() => {
+  //   fetch('./data/roomData.json')
+  //     .then((res) => res.json())
+  //     .then((result) => {
+  //       console.log('result page', result.rooms.rooms);
+  //       setRoomData(result.rooms.rooms);
+  //     });
+  // }, []);
+
+  return <div>{roomData.length && <Map rooms={roomData} />}</div>;
 }
 
 export default Result;

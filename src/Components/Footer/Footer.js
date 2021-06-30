@@ -66,8 +66,8 @@ const FOOTER_BOTTOM = [
 const Footer = () => (
   <FooterWrap>
     <FooterTop>
-      {FOOTER_TOP.map((footer) => (
-        <FTopSection>
+      {FOOTER_TOP.map((footer, idx) => (
+        <FTopSection key={`${footer + idx}`}>
           <h4>{footer.title}</h4>
           <ul>
             {footer.contents.map((content, i) => (
