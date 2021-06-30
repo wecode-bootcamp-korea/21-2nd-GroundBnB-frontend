@@ -10,6 +10,7 @@ import SearchBox from './SearchBox/SearchBox';
 import DropMenu from './DropMenu/DropMenu';
 import Modal from './Modal/Modal';
 import SocialLogin from './SocialLogin/SocialLogin';
+import { KAKAO_LOGIN_API } from '../../config';
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -36,7 +37,7 @@ function Header() {
         success(authObj) {
           Kakao.Auth.setAccessToken(authObj.access_token);
 
-          fetch('http://10.58.6.227:8000/users/login/kakao', {
+          fetch(`${KAKAO_LOGIN_API}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -156,7 +157,6 @@ const FlexWrap = styled.div`
   position: relative;
   ${(props) => props.theme.FlexSet('space-between', 'center')}
   height: 100%;
-  /* margin: 0 80px; */
   padding: 0 80px;
   background: transparent;
 `;

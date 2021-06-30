@@ -73,7 +73,6 @@ const CloseBtn = styled.button`
   transform: translateY(-50%);
   outline: none;
 
-  //TODO: 소셜 레이아웃 다 하고 hover 위치 설정해주기
   &:before {
     content: '';
     position: absolute;

@@ -1,19 +1,26 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOMServer from 'react-dom/server';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import Card from '../Card/Card';
 
-function Map({ rooms }) {
-  const [coords, setCoords] = useState([]);
+function Map({ rooms: coords }) {
+  const location = useLocation();
   const [map, setMap] = useState(null);
-  const [centerCoord, setCenterCoord] = useState({});
   const mapRef = useRef();
+
+  const seoulCenter = {
+    lat: 37.56105185979463,
+    lng: 126.98849708465438,
+  };
 
   const setCenterPoints = () => {
     if (coords) {
       const latValue =
         coords
-          .map((obj) => obj.geo.lat)
+          .map((obj) => {
+            return Number(obj.geo.lat);
+          })
           .reduce(
             (accumulator, currentValue) => accumulator + currentValue,
             0,
@@ -21,34 +28,20 @@ function Map({ rooms }) {
 
       const lngValue =
         coords
-          .map((obj) => obj.geo.lng)
+          .map((obj) => Number(obj.geo.lng))
           .reduce(
             (accumulator, currentValue) => accumulator + currentValue,
             0,
           ) / coords.length;
 
-      console.log('lat', typeof latValue);
-      console.log('lng', typeof lngValue);
       return { lat: latValue, lng: lngValue };
     }
 
-    return {
-      lat: 37.56105185979463,
-      lng: 126.98849708465438,
-    };
+    return seoulCenter;
   };
 
-  // const center = {
-  //   lat: 37.56105185979463,
-  //   lng: 126.98849708465438,
-  // };
-
-  useEffect(() => {
-    setCenterCoord(setCenterPoints());
-  }, [coords]);
-
   const options = {
-    center: centerCoord,
+    center: setCenterPoints(),
     zoom: 10,
   };
 
@@ -65,7 +58,7 @@ function Map({ rooms }) {
 
     if (google) {
       const marker = new window.google.maps.Marker({
-        position: point.geo,
+        position: { lat: Number(point.geo.lat), lng: Number(point.geo.lng) },
         map,
         title: Math.floor(point.room_price).toLocaleString(),
         icon,
@@ -73,10 +66,14 @@ function Map({ rooms }) {
 
       const infowindow = new window.google.maps.InfoWindow({
         content: ReactDOMServer.renderToString(
-          <a href={`/detail/${point.room_id}`}>
+          <a href={`/detail/${point.room_id}${location.search}`}>
             <Card room={point} />
           </a>,
         ),
+      });
+
+      google.maps.event.addListener(map, 'click', () => {
+        infowindow.close();
       });
 
       marker.addListener('click', () => {
@@ -86,8 +83,6 @@ function Map({ rooms }) {
           shouldFocus: true,
         });
       });
-
-      marker.setMap(map);
     }
   };
 
@@ -105,7 +100,7 @@ function Map({ rooms }) {
       return () => script.removeEventListener(`load`, init);
     }
     init();
-  }, []);
+  }, [coords]);
 
   useEffect(() => {
     if (map) {
