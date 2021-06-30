@@ -1,0 +1,294 @@
+{
+  "rooms": {
+    "room_count": 10,
+    "next_page": 2,
+    "search": "서울의 숙소",
+    "adult": 1,
+    "child": 2,
+    "baby": 2,
+    "rooms": [
+      {
+        "room_id": 1,
+        "category_id": 1,
+        "price": "80000.00",
+        "address": "서울특별시 종로구 가회동 31-26 rrrrrrrrr",
+        "room_name": "한국 전통 가옥",
+        "room_images": [
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-1.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-2.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-5.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-6.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-7.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-8.jpg"
+        ],
+        "max_people": 4,
+        "geo": {
+          "lat": 37.58243568,
+          "lng": 126.9836276
+        },
+        "user_wish": 0,
+        "point_average": 3.4,
+        "review_count": 4,
+        "room_options": [
+          {
+            "name": "침대",
+            "quantity": 2
+          },
+          {
+            "name": "침실",
+            "quantity": 1
+          },
+          {
+            "name": "욕실",
+            "quantity": 1
+          }
+        ],
+        "room_convenience": [
+          "주방",
+          "무선인터넷",
+          "건물 내 무료주차",
+          "TV + 일반 테이블 TV",
+          "세탁기",
+          "여행 가방 보관 가능",
+          "헤어드라이기",
+          "냉장고"
+        ]
+      },
+      {
+        "room_id": 2,
+        "category_id": 1,
+        "price": "80000.00",
+        "address": "서울특별시 종로구 가회동 31-26 ",
+        "room_name": "한국 전통 가옥",
+        "room_images": [
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-1.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-2.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-5.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-6.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-7.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-8.jpg"
+        ],
+        "max_people": 4,
+        "geo": {
+          "lat": 36.58243568,
+          "lng": 126.9836276
+        },
+        "user_wish": 0,
+        "point_average": 3.4,
+        "review_count": 4,
+        "room_options": [
+          {
+            "name": "침대",
+            "quantity": 2
+          },
+          {
+            "name": "침실",
+            "quantity": 1
+          },
+          {
+            "name": "욕실",
+            "quantity": 1
+          }
+        ],
+        "room_convenience": [
+          "주방",
+          "무선인터넷",
+          "건물 내 무료주차",
+          "TV + 일반 테이블 TV",
+          "세탁기",
+          "여행 가방 보관 가능",
+          "헤어드라이기",
+          "냉장고"
+        ]
+      },
+      {
+        "room_id": 3,
+        "category_id": 1,
+        "price": "80000.00",
+        "address": "서울특별시 종로구 가회동 31-26 ",
+        "room_name": "한국 전통 가옥",
+        "room_images": [
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-1.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-2.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-5.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-6.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-7.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-8.jpg"
+        ],
+        "max_people": 4,
+        "geo": {
+          "lat": 38.58243568,
+          "lng": 126.9836276
+        },
+        "user_wish": 0,
+        "point_average": 3.4,
+        "review_count": 4,
+        "room_options": [
+          {
+            "name": "침대",
+            "quantity": 2
+          },
+          {
+            "name": "침실",
+            "quantity": 1
+          },
+          {
+            "name": "욕실",
+            "quantity": 1
+          }
+        ],
+        "room_convenience": [
+          "주방",
+          "무선인터넷",
+          "건물 내 무료주차",
+          "TV + 일반 테이블 TV",
+          "세탁기",
+          "여행 가방 보관 가능",
+          "헤어드라이기",
+          "냉장고"
+        ]
+      },
+      {
+        "room_id": 4,
+        "category_id": 1,
+        "price": "80000.00",
+        "address": "서울특별시 종로구 가회동 31-26 ",
+        "room_name": "한국 전통 가옥",
+        "room_images": [
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-1.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-2.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-5.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-6.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-7.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-8.jpg"
+        ],
+        "max_people": 4,
+        "geo": {
+          "lat": 37.58243568,
+          "lng": 125.9836276
+        },
+        "user_wish": 0,
+        "point_average": 3.4,
+        "review_count": 4,
+        "room_options": [
+          {
+            "name": "침대",
+            "quantity": 2
+          },
+          {
+            "name": "침실",
+            "quantity": 1
+          },
+          {
+            "name": "욕실",
+            "quantity": 1
+          }
+        ],
+        "room_convenience": [
+          "주방",
+          "무선인터넷",
+          "건물 내 무료주차",
+          "TV + 일반 테이블 TV",
+          "세탁기",
+          "여행 가방 보관 가능",
+          "헤어드라이기",
+          "냉장고"
+        ]
+      },
+      {
+        "room_id": 5,
+        "category_id": 1,
+        "price": "80000.00",
+        "address": "서울특별시 종로구 가회동 31-26 ",
+        "room_name": "한국 전통 가옥",
+        "room_images": [
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-1.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-2.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-5.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-6.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-7.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-8.jpg"
+        ],
+        "max_people": 4,
+        "geo": {
+          "lat": 37.58243568,
+          "lng": 127.9836276
+        },
+        "user_wish": 0,
+        "point_average": 3.4,
+        "review_count": 4,
+        "room_options": [
+          {
+            "name": "침대",
+            "quantity": 2
+          },
+          {
+            "name": "침실",
+            "quantity": 1
+          },
+          {
+            "name": "욕실",
+            "quantity": 1
+          }
+        ],
+        "room_convenience": [
+          "주방",
+          "무선인터넷",
+          "건물 내 무료주차",
+          "TV + 일반 테이블 TV",
+          "세탁기",
+          "여행 가방 보관 가능",
+          "헤어드라이기",
+          "냉장고"
+        ]
+      },
+      {
+        "room_id": 6,
+        "category_id": 1,
+        "price": "80000.00",
+        "address": "서울특별시 종로구 가회동 31-26 ",
+        "room_name": "한국 전통 가옥",
+        "room_images": [
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-1.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-2.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-5.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-6.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-7.jpg",
+          "https://groundbnb.s3.us-east-2.amazonaws.com/rooms/1-8.jpg"
+        ],
+        "max_people": 4,
+        "geo": {
+          "lat": 37.58243568,
+          "lng": 129.9836276
+        },
+        "user_wish": 0,
+        "point_average": 3.4,
+        "review_count": 4,
+        "room_options": [
+          {
+            "name": "침대",
+            "quantity": 2
+          },
+          {
+            "name": "침실",
+            "quantity": 1
+          },
+          {
+            "name": "욕실",
+            "quantity": 1
+          }
+        ],
+        "room_convenience": [
+          "주방",
+          "무선인터넷",
+          "건물 내 무료주차",
+          "TV + 일반 테이블 TV",
+          "세탁기",
+          "여행 가방 보관 가능",
+          "헤어드라이기",
+          "냉장고"
+        ]
+      }
+    ]
+  }
+}
