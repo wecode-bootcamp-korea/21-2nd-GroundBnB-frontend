@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-<<<<<<< HEAD
-import { GET_SEARCHED_ROOMS_API } from '../../../../config';
-=======
 import { GET_INPUTTED_ROOMS_API } from '../../../../config';
->>>>>>> 6cc0773 (Modify :검색바인풋창 데이터 실시간 db연동 test 성공)
 import LocationResult from './LocationResult/LocationResult';
 
 const LocationInput = ({ setInputValue }) => {
