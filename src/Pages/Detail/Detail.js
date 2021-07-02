@@ -15,6 +15,7 @@ import { API } from '../../config';
 function Detail() {
   const [item, setItem] = useState([]);
   const [comments, setComments] = useState({});
+  const [rooms, setRooms] = useState({});
   const [isClickedImageButton, setIsClickedImageButton] = useState(false);
   const [isClickedDescriptionButton, setIsClickedDescriptionButton] =
     useState(false);
@@ -62,6 +63,15 @@ function Detail() {
     try {
       // const res = await fetch('/Data/room.json', {
       //   method: 'GET',
+      // const res = await fetch('/Data/room.json', {
+      //   method: 'GET',
+      // });
+
+      // const res = await fetch(`http://10.58.7.23:8000/rooms/${id}`, {
+      //   method: 'GET',
+      //   headers: {
+      //     Authorization: localStorage.getItem('token'),
+      //   },
       // });
 
       const res = await fetch(`${API}/${id}`, {
@@ -84,6 +94,7 @@ function Detail() {
 
   useEffect(() => {
     fetchItem();
+    // setReservationInfo()
   }, []);
 
   console.log(item);
@@ -125,6 +136,17 @@ function Detail() {
           reservationCompleted: false,
           reservationFailed: false,
         });
+        //   setReservationInfo({
+        //     ...reservationInfo,
+        //     reservationCompleted: false,
+        //     reservationFailed: true,
+        //   });
+        // } else {
+        //   setReservationInfo({
+        //     ...reservationInfo,
+        //     reservationCompleted: false,
+        //     reservationFailed: false,
+        //   });
         throw new Error('예약 실패');
       }
     } catch (err) {
@@ -149,16 +171,34 @@ function Detail() {
 
   const requestModifyComment = async (reviewId, content) => {
     try {
-      const res = await fetch(`${API}/reviews?room_id=${id}`, {
-        method: 'PATCH',
-        headers: {
-          Authorization: localStorage.getItem('token'),
+      // <<<<<<< HEAD
+      //       const res = await fetch(`${API}/reviews?room_id=${id}`, {
+      //         method: 'PATCH',
+      //         headers: {
+      //           Authorization: localStorage.getItem('token'),
+
+      //       console.log(reviewId, content);
+
+      const res = await fetch(
+        `http://10.58.3.69:8000/rooms/reviews?room_id=${id}`,
+        {
+          method: 'PATCH',
+          headers: {
+            Authorization: localStorage.getItem('token'),
+          },
+          body: JSON.stringify({
+            review_id: reviewId,
+            content,
+          }),
         },
-        body: JSON.stringify({
-          review_id: reviewId,
-          content,
-        }),
-      });
+      );
+      // >>>>>>> master
+      //   },
+      //   body: JSON.stringify({
+      //     review_id: reviewId,
+      //     content,
+      //   }),
+      // });
 
       const data = await res.json();
 
@@ -185,18 +225,35 @@ function Detail() {
 
   const requestAddComment = async (userId, group = null, content) => {
     try {
-      const res = await fetch(`${API}/reviews?room_id=${id}`, {
-        method: 'POST',
-        headers: {
-          Authorization: localStorage.getItem('token'),
+      // <<<<<<< HEAD
+      // const res = await fetch(`${API}/reviews?room_id=${id}`, {
+      //   method: 'POST',
+      //   headers: {
+      //     Authorization: localStorage.getItem('token'),
+
+      const res = await fetch(
+        `http://10.58.3.69:8000/rooms/reviews?room_id=${id}`,
+        {
+          method: 'POST',
+          headers: {
+            Authorization: localStorage.getItem('token'),
+          },
+          body: JSON.stringify({
+            room_id: comments.room_id,
+            user_id: userId,
+            group_id: group,
+            content,
+          }),
+          // >>>>>>> master
         },
-        body: JSON.stringify({
-          room_id: comments.room_id,
-          user_id: userId,
-          group_id: group,
-          content,
-        }),
-      });
+      );
+      // body: JSON.stringify({
+      //   room_id: comments.room_id,
+      //   user_id: userId,
+      //   group_id: group,
+      //   content,
+      // }),
+      // });
 
       const data = await res.json();
 
@@ -239,15 +296,29 @@ function Detail() {
 
   const requestDeleteComment = async (reviewId) => {
     try {
-      const res = await fetch(`${API}/reviews?review_id=${reviewId}`, {
-        method: 'DELETE',
-        headers: {
-          Authorization: localStorage.getItem('token'),
+      // <<<<<<< HEAD
+      //       const res = await fetch(`${API}/reviews?review_id=${reviewId}`, {
+      //         method: 'DELETE',
+      //         headers: {
+      //           Authorization: localStorage.getItem('token'),
+      // =======
+      const res = await fetch(
+        `http://10.58.3.69:8000/rooms/reviews?review_id=${reviewId}`,
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: localStorage.getItem('token'),
+          },
+          body: JSON.stringify({
+            review_id: reviewId,
+          }),
+          // >>>>>>> master
+          // },
+          // body: JSON.stringify({
+          //   review_id: reviewId,
+          // }),
         },
-        body: JSON.stringify({
-          review_id: reviewId,
-        }),
-      });
+      );
 
       const data = await res.json();
 
