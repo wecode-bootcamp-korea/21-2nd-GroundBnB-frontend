@@ -36,7 +36,7 @@ function Detail() {
       reservationFailed: false,
     });
   }, []);
-
+  console.log(1);
   const fetchItem = async () => {
     try {
       const res = await fetch(`${API}/${id}`, {
