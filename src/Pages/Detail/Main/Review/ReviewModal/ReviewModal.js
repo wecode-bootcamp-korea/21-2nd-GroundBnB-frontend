@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ReviewBar from '../ReviewBar/ReviewBar';
@@ -12,50 +12,12 @@ function ReviewModal({
   reviewCount,
   roomId,
   loginUserInfo,
-  fetchComment,
   requestAddComment,
   requestDeleteComment,
   requestModifyComment,
-  requestMoreComments,
 }) {
-  // const reviewModalContainer = useRef(null);
-  // const reviewModal = reviewModalContainer.current;
   const [isOpenedCommentForm, setIsOpenedCommentForm] = useState(false);
   const [isOpenedMyComment, setIsOpenedMyComment] = useState(false);
-
-  // console.log(reviewModal)
-  // const handleInfiniteScroll = (e) => {
-  //   const reviewModal = reviewModalContainer.current;
-  //   console.log('왜 안걸릴까요');
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener('scroll', handleInfiniteScroll.bind(this));
-  //   return () => {
-  //     window.removeEventListener('scroll', handleInfiniteScroll.bind(this));
-  //   };
-  // });
-
-  // useEffect(() => {
-  //   fetchComment();
-  // }, []);
-
-  // useEffect(() => {
-  //   const reviewModal = reviewModalContainer.current;
-  //   console.log(reviewModal);
-
-  //   reviewModal.addEventListener('scroll', handleInfiniteScroll);
-
-  //   return () => {
-  //     reviewModal.removeEventListener('scroll', handleInfiniteScroll);
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   if (inView && !isLoading) {
-  //     setOffset((prev) => prev + 1);
-  //   }
-  // }, [inView, isLoading]);
 
   const handleClickButton = (e) => {
     if (e.target.name === 'viewMyComment') {
@@ -65,8 +27,6 @@ function ReviewModal({
 
     setIsOpenedCommentForm((prev) => !prev);
   };
-
-  // console.log(loginUserInfo.reply_auth);
 
   return (
     <ReviewWrapper>
@@ -230,21 +190,10 @@ ReviewModal.propTypes = {
     host_auth: PropTypes.number.isRequired,
     reply_auth: PropTypes.number.isRequired,
   }).isRequired,
-  // addComment: PropTypes.func.isRequired,
-  fetchComment: PropTypes.func.isRequired,
   requestAddComment: PropTypes.func.isRequired,
   requestDeleteComment: PropTypes.func.isRequired,
   requestModifyComment: PropTypes.func.isRequired,
-  requestMoreComments: PropTypes.func.isRequired,
 };
-
-// "review_id": 13,
-// "user_id": 1,
-// "profile_image": "test.jpg",
-// "content": "와 짱이에요13",
-// "depth": 1,
-// "group": 13,
-// "date": "2021-06-26"
 
 export default ReviewModal;
 
@@ -252,13 +201,11 @@ const ReviewWrapper = styled.div``;
 
 const ReviewHeader = styled.div`
   display: flex;
-  /* position: absolute;
-  width: 100%; */
 `;
+
 const SearchReview = styled.div`
   position: relative;
   width: 70%;
-  /* padding-left: 50px; */
 
   input {
     width: 100%;
@@ -308,6 +255,7 @@ const ReviewTitle = styled.div`
     font-weight: 600;
   }
 `;
+
 const ReviewBody = styled.div`
   display: flex;
   width: 100%;

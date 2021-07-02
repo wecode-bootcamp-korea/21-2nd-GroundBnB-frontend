@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import queryString from 'query-string';
 import styled from 'styled-components';
 import Header from './Header/Header';
 import Main from './Main/Main';
@@ -12,39 +14,49 @@ import ScrollModal from '../../Components/ScrollModal/ScrollModal';
 function Detail() {
   const [item, setItem] = useState([]);
   const [comments, setComments] = useState({});
+  const [rooms, setRooms] = useState({});
   const [isClickedImageButton, setIsClickedImageButton] = useState(false);
   const [isClickedDescriptionButton, setIsClickedDescriptionButton] =
     useState(false);
   const [isClickedCommentButton, setIsClickedCommentButton] = useState(false);
-  const [reservationInfo, setReservationInfo] = useState({
-    checkIn: '',
-    checkOut: '',
-    adult: 0,
-    kids: 0,
-    baby: 0,
-    isAvailable: true,
-    reservationSuccess: false,
-  });
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [offset, setOffset] = useState(1);
+  const [reservationInfo, setReservationInfo] = useState({});
+  const { id } = useParams();
+  const location = useLocation();
+  const qs = queryString.parse(location.search);
 
-  const fetchComment = async () => {
-    try {
-      const res = await fetch('/Data/comment.json', {
-        method: 'GET',
-      });
+  useEffect(() => {
+    const { checkIn, checkOut, adult, child, baby } = qs;
+    setReservationInfo({
+      checkIn,
+      checkOut,
+      adult: Number(adult),
+      kids: Number(child),
+      baby: Number(baby),
+      reservationCompleted: false,
+      reservationFailed: false,
+    });
+    // const rooms = {
+    //   geo: { lat: 1, lng:1 }
+    // }
+  }, []);
 
-      // const res = await fetch('http://10.58.6.210:8000/rooms/reviews?room_id=1', {
-      //   method: 'GET',
-      // });
+  // const fetchComment = async () => {
+  //   try {
+  //     const res = await fetch('/Data/comment.json', {
+  //       method: 'GET',
+  //     });
 
-      const data = await res.json();
-      // console.log(data);
-      setComments(data.reviews);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  //     // const res = await fetch(`http://10.58.6.210:8000/rooms/reviews?room_id=${id}`, {
+  //     //   method: 'GET',
+  //     // });
+
+  //     const data = await res.json();
+  //     // console.log(data);
+  //     setComments(data.reviews);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
   const fetchItem = async () => {
     try {
@@ -52,15 +64,18 @@ function Detail() {
         method: 'GET',
       });
 
-      // const res = await fetch('http://10.58.7.23:8000/rooms/1', {
+      // const res = await fetch(`http://10.58.7.23:8000/rooms/${id}`, {
       //   method: 'GET',
-
+      //   headers: {
+      //     Authorization: localStorage.getItem('token'),
+      //   },
       // });
 
       const data = await res.json();
       // console.log(data.result);
       // console.log(data.result);
       // setItem(data.result);
+
       setItem(data);
     } catch (err) {
       console.error(err);
@@ -69,13 +84,19 @@ function Detail() {
 
   useEffect(() => {
     fetchItem();
+    // setReservationInfo()
   }, []);
   // console.log(item[0].host_name);
+  console.log(item);
+
   const requestReservation = async () => {
     try {
       console.log(reservationInfo);
       const res = await fetch('http://10.58.2.168:8000/rooms/order', {
         method: 'POST',
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
         body: JSON.stringify({
           check_in_date: reservationInfo.checkIn,
           check_out_date: reservationInfo.checkOut,
@@ -91,27 +112,47 @@ function Detail() {
       if (result.MESSAGE === 'SUCCESS') {
         setReservationInfo({
           ...reservationInfo,
-          reservationSuccess: true,
-          isAvailable: true,
+          reservationCompleted: true,
+          reservationFailed: false,
         });
-        return;
-      }
-      if (result.MESSAGE === 'EXISTS RESERVATION') {
+      } else if (result.MESSAGE === 'EXISTS RESERVATION') {
         setReservationInfo({
           ...reservationInfo,
-          reservationSuccess: false,
-          isAvailable: false,
+          reservationCompleted: false,
+          reservationFailed: true,
         });
+      } else {
+        setReservationInfo({
+          ...reservationInfo,
+          reservationCompleted: false,
+          reservationFailed: false,
+        });
+        throw new Error('예약 실패');
       }
     } catch (err) {
       console.error(err);
     }
   };
 
-  const handleReservationInfo = (key, value) => {
+  // const handleReservationInfo = (key, value) => {
+  //   setReservationInfo({
+  //     ...reservationInfo,
+  //     [key]: value,
+  //   });
+  // };
+
+  const handleReservationInfo = (start, end) => {
     setReservationInfo({
       ...reservationInfo,
-      [key]: value,
+      checkIn: start,
+      checkOut: end,
+    });
+  };
+
+  const handleReservationGuest = (type, number) => {
+    setReservationInfo({
+      ...reservationInfo,
+      [type]: number,
     });
   };
 
@@ -120,9 +161,12 @@ function Detail() {
       console.log(reviewId, content);
 
       const res = await fetch(
-        'http://10.58.3.69:8000/rooms/reviews?room_id=1',
+        `http://10.58.3.69:8000/rooms/reviews?room_id=${id}`,
         {
           method: 'PATCH',
+          headers: {
+            Authorization: localStorage.getItem('token'),
+          },
           body: JSON.stringify({
             review_id: reviewId,
             content,
@@ -131,7 +175,6 @@ function Detail() {
       );
 
       const data = await res.json();
-      console.log(data);
 
       if (data.MESSAGE === 'SUCCESS') {
         setComments({
@@ -146,6 +189,8 @@ function Detail() {
             return review;
           }),
         });
+      } else {
+        throw new Error('변경 실패');
       }
     } catch (err) {
       console.error(err);
@@ -155,9 +200,12 @@ function Detail() {
   const requestAddComment = async (userId, group = null, content) => {
     try {
       const res = await fetch(
-        'http://10.58.3.69:8000/rooms/reviews?room_id=1',
+        `http://10.58.3.69:8000/rooms/reviews?room_id=${id}`,
         {
           method: 'POST',
+          headers: {
+            Authorization: localStorage.getItem('token'),
+          },
           body: JSON.stringify({
             room_id: comments.room_id,
             user_id: userId,
@@ -212,6 +260,9 @@ function Detail() {
         `http://10.58.3.69:8000/rooms/reviews?review_id=${reviewId}`,
         {
           method: 'DELETE',
+          headers: {
+            Authorization: localStorage.getItem('token'),
+          },
           body: JSON.stringify({
             review_id: reviewId,
           }),
@@ -230,6 +281,8 @@ function Detail() {
             return review;
           }),
         });
+      } else {
+        throw new Error('삭제 실패');
       }
     } catch (err) {
       console.error(err);
@@ -253,7 +306,7 @@ function Detail() {
   // }
 
   // console.log(comments);
-
+  console.log(reservationInfo);
   return (
     <>
       {isClickedImageButton && (
@@ -274,6 +327,7 @@ function Detail() {
           closeModal={setIsClickedCommentButton}
           comments={comments}
           setComments={setComments}
+          id={id}
         >
           <ReviewModal
             comments={comments.comment}
@@ -282,7 +336,6 @@ function Detail() {
             reviewCount={comments.reviews_count}
             roomId={comments.room_id}
             loginUserInfo={comments.login_user_info}
-            fetchComment={fetchComment}
             requestAddComment={requestAddComment}
             requestDeleteComment={requestDeleteComment}
             requestModifyComment={requestModifyComment}
@@ -314,11 +367,22 @@ function Detail() {
                 pointAverage={item[0].point_average}
                 reviewCount={item[0].review_count}
                 price={item[0].price}
+                rooms={[
+                  {
+                    geo: { lat: item[0].latitude, lng: item[0].longitude },
+                    room_images: [item[0].images[0]],
+                    room_name: item[0].title,
+                    address: item[0].address,
+                    point_average: item[0].point_average,
+                    review_count: item[0].review_count,
+                  },
+                ]}
                 reservationInfo={reservationInfo}
                 handleReservationInfo={handleReservationInfo}
                 setIsClickedDescriptionButton={setIsClickedDescriptionButton}
                 setIsClickedCommentButton={setIsClickedCommentButton}
                 requestReservation={requestReservation}
+                handleReservationGuest={handleReservationGuest}
               />
             </>
           )}

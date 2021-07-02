@@ -4,34 +4,34 @@ import PropTypes from 'prop-types';
 
 function HeadCount({
   reservationInfo,
-  handleReservationInfo,
-  setIsClickedButton,
+  handleReservationGuest,
+  setIsClickedCountButton,
 }) {
   const handleClickButton = (e) => {
     switch (e.target.name) {
       case 'adultMinus':
         if (reservationInfo.adult - 1 < 0) return;
-        handleReservationInfo('adult', reservationInfo.adult - 1);
+        handleReservationGuest('adult', reservationInfo.adult - 1);
         break;
       case 'adultPlus':
-        handleReservationInfo('adult', reservationInfo.adult + 1);
+        handleReservationGuest('adult', reservationInfo.adult + 1);
         break;
       case 'kidsMinus':
         if (reservationInfo.kids - 1 < 0) return;
-        handleReservationInfo('kids', reservationInfo.kids - 1);
+        handleReservationGuest('kids', reservationInfo.kids - 1);
         break;
       case 'kidsPlus':
-        handleReservationInfo('kids', reservationInfo.kids + 1);
+        handleReservationGuest('kids', reservationInfo.kids + 1);
         break;
       case 'babyMinus':
         if (reservationInfo.baby - 1 < 0) return;
-        handleReservationInfo('baby', reservationInfo.baby - 1);
+        handleReservationGuest('baby', reservationInfo.baby - 1);
         break;
       case 'babyPlus':
-        handleReservationInfo('baby', reservationInfo.baby + 1);
+        handleReservationGuest('baby', reservationInfo.baby + 1);
         break;
       case 'close':
-        setIsClickedButton((prev) => !prev);
+        setIsClickedCountButton((prev) => !prev);
         break;
 
       default:
@@ -105,17 +105,17 @@ HeadCount.propTypes = {
     kids: PropTypes.number.isRequired,
     baby: PropTypes.number.isRequired,
   }).isRequired,
-  handleReservationInfo: PropTypes.func.isRequired,
-  setIsClickedButton: PropTypes.func.isRequired,
+  setIsClickedCountButton: PropTypes.func.isRequired,
+  handleReservationGuest: PropTypes.func.isRequired,
 };
 
 export default HeadCount;
 
 const Form = styled.div`
   position: absolute;
-  top: 50px;
-  left: -5px;
-  width: calc(100% + 10px);
+  top: 218px;
+  left: 20px;
+  width: calc(100% - 40px);
   padding: 10px;
   border: 1px solid #dfdfdf;
   border-radius: 10px;

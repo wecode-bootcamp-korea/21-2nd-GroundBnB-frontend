@@ -20,6 +20,13 @@ function SearchBox({ isSearch, toggleSearchOpen }) {
     baby: 0,
   });
 
+  const handleDate = (start, end) => {
+    setCheckDate({
+      checkIn: start,
+      checkOut: end,
+    });
+  };
+
   const plusCount = (type) => {
     const count = person[type];
 
@@ -76,7 +83,10 @@ function SearchBox({ isSearch, toggleSearchOpen }) {
               <SearchBar>
                 <LocationInput setInputValue={setInputValue} />
                 <VLine />
-                <SelectDate />
+                <SelectDate
+                  reservationInfo={checkDate}
+                  handleReservationInfo={handleDate}
+                />
                 <VLine />
                 <GuestInput
                   person={person}
