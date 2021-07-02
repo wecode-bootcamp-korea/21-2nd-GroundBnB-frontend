@@ -151,10 +151,10 @@ function ReservationForm({
             >
               예약하기
             </button>
-            {reservationInfo.reservationSuccess && (
+            {reservationInfo.reservationCompleted && (
               <SuccessMessage>예약이 가능합니다.</SuccessMessage>
             )}
-            {reservationInfo.isAvailable && (
+            {reservationInfo.reservationFailed && (
               <ErrorMessage>예약이 불가능합니다.</ErrorMessage>
             )}
             {reservationInfo.checkIn && reservationInfo.checkOut && (
@@ -424,5 +424,5 @@ const ErrorMessage = styled.span`
 const SuccessMessage = styled.span`
   font-size: 16px;
   font-weight: 600;
-  color: red;
+  color: black;
 `;

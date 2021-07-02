@@ -10,11 +10,11 @@ import Modal from '../../Components/Modal/Modal';
 import Description from './Main/Description/Description';
 import ReviewModal from './Main/Review/ReviewModal/ReviewModal';
 import ScrollModal from '../../Components/ScrollModal/ScrollModal';
+import { API } from '../../config';
 
 function Detail() {
   const [item, setItem] = useState([]);
   const [comments, setComments] = useState({});
-  const [rooms, setRooms] = useState({});
   const [isClickedImageButton, setIsClickedImageButton] = useState(false);
   const [isClickedDescriptionButton, setIsClickedDescriptionButton] =
     useState(false);
@@ -35,48 +35,21 @@ function Detail() {
       reservationCompleted: false,
       reservationFailed: false,
     });
-    // const rooms = {
-    //   geo: { lat: 1, lng:1 }
-    // }
   }, []);
-
-  // const fetchComment = async () => {
-  //   try {
-  //     const res = await fetch('/Data/comment.json', {
-  //       method: 'GET',
-  //     });
-
-  //     // const res = await fetch(`http://10.58.6.210:8000/rooms/reviews?room_id=${id}`, {
-  //     //   method: 'GET',
-  //     // });
-
-  //     const data = await res.json();
-  //     // console.log(data);
-  //     setComments(data.reviews);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
 
   const fetchItem = async () => {
     try {
-      const res = await fetch('/Data/room.json', {
+      const res = await fetch(`${API}/${id}`, {
         method: 'GET',
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
       });
 
-      // const res = await fetch(`http://10.58.7.23:8000/rooms/${id}`, {
-      //   method: 'GET',
-      //   headers: {
-      //     Authorization: localStorage.getItem('token'),
-      //   },
-      // });
-
       const data = await res.json();
-      // console.log(data.result);
-      // console.log(data.result);
-      // setItem(data.result);
+      console.log(data);
 
-      setItem(data);
+      setItem(data.result);
     } catch (err) {
       console.error(err);
     }
@@ -84,15 +57,21 @@ function Detail() {
 
   useEffect(() => {
     fetchItem();
-    // setReservationInfo()
   }, []);
-  // console.log(item[0].host_name);
+
   console.log(item);
 
   const requestReservation = async () => {
     try {
-      console.log(reservationInfo);
-      const res = await fetch('http://10.58.2.168:8000/rooms/order', {
+      console.log({
+        check_in_date: reservationInfo.checkIn,
+        check_out_date: reservationInfo.checkOut,
+        adult: reservationInfo.adult,
+        kids: reservationInfo.kids,
+        baby: reservationInfo.baby,
+        room_id: id,
+      });
+      const res = await fetch(`${API}/order`, {
         method: 'POST',
         headers: {
           Authorization: localStorage.getItem('token'),
@@ -103,11 +82,12 @@ function Detail() {
           adult: reservationInfo.adult,
           kids: reservationInfo.kids,
           baby: reservationInfo.baby,
-          room_id: 1,
+          room_id: id,
         }),
       });
 
       const result = await res.json();
+      console.log(result);
 
       if (result.MESSAGE === 'SUCCESS') {
         setReservationInfo({
@@ -134,13 +114,6 @@ function Detail() {
     }
   };
 
-  // const handleReservationInfo = (key, value) => {
-  //   setReservationInfo({
-  //     ...reservationInfo,
-  //     [key]: value,
-  //   });
-  // };
-
   const handleReservationInfo = (start, end) => {
     setReservationInfo({
       ...reservationInfo,
@@ -158,7 +131,13 @@ function Detail() {
 
   const requestModifyComment = async (reviewId, content) => {
     try {
-      console.log(reviewId, content);
+      // <<<<<<< HEAD
+      //       const res = await fetch(`${API}/reviews?room_id=${id}`, {
+      //         method: 'PATCH',
+      //         headers: {
+      //           Authorization: localStorage.getItem('token'),
+
+      //       console.log(reviewId, content);
 
       const res = await fetch(
         `http://10.58.3.69:8000/rooms/reviews?room_id=${id}`,
@@ -173,6 +152,13 @@ function Detail() {
           }),
         },
       );
+      // >>>>>>> master
+      //   },
+      //   body: JSON.stringify({
+      //     review_id: reviewId,
+      //     content,
+      //   }),
+      // });
 
       const data = await res.json();
 
@@ -199,6 +185,12 @@ function Detail() {
 
   const requestAddComment = async (userId, group = null, content) => {
     try {
+      // <<<<<<< HEAD
+      // const res = await fetch(`${API}/reviews?room_id=${id}`, {
+      //   method: 'POST',
+      //   headers: {
+      //     Authorization: localStorage.getItem('token'),
+
       const res = await fetch(
         `http://10.58.3.69:8000/rooms/reviews?room_id=${id}`,
         {
@@ -212,8 +204,16 @@ function Detail() {
             group_id: group,
             content,
           }),
+          // >>>>>>> master
         },
       );
+      // body: JSON.stringify({
+      //   room_id: comments.room_id,
+      //   user_id: userId,
+      //   group_id: group,
+      //   content,
+      // }),
+      // });
 
       const data = await res.json();
 
@@ -256,6 +256,12 @@ function Detail() {
 
   const requestDeleteComment = async (reviewId) => {
     try {
+      // <<<<<<< HEAD
+      //       const res = await fetch(`${API}/reviews?review_id=${reviewId}`, {
+      //         method: 'DELETE',
+      //         headers: {
+      //           Authorization: localStorage.getItem('token'),
+      // =======
       const res = await fetch(
         `http://10.58.3.69:8000/rooms/reviews?review_id=${reviewId}`,
         {
@@ -266,6 +272,11 @@ function Detail() {
           body: JSON.stringify({
             review_id: reviewId,
           }),
+          // >>>>>>> master
+          // },
+          // body: JSON.stringify({
+          //   review_id: reviewId,
+          // }),
         },
       );
 
@@ -289,24 +300,8 @@ function Detail() {
     }
   };
 
-  // try {
-  //   const res = await fetch('/Data/comment.json', {
-  //     method: 'GET',
-  //   });
+  console.log(item);
 
-  //   // const res = await fetch('http://10.58.6.210:8000/rooms/reviews?room_id=1', {
-  //   //   method: 'GET',
-  //   // });
-
-  //   const data = await res.json();
-  //   // console.log(data);
-  //   setComments(data.reviews);
-  // } catch (err) {
-  //   console.error(err);
-  // }
-
-  // console.log(comments);
-  console.log(reservationInfo);
   return (
     <>
       {isClickedImageButton && (
@@ -358,6 +353,7 @@ function Detail() {
               <Main
                 hostName={item[0].host_name}
                 profileImage={item[0].images[0]}
+                images={item[0].images}
                 maxPeople={item[0].max_people}
                 roomOptions={item[0].room_options}
                 description={item[0].description}
@@ -369,7 +365,7 @@ function Detail() {
                 price={item[0].price}
                 rooms={[
                   {
-                    geo: { lat: item[0].latitude, lng: item[0].longitude },
+                    geo: { lat: item[0].lat, lng: item[0].lng },
                     room_images: [item[0].images[0]],
                     room_name: item[0].title,
                     address: item[0].address,

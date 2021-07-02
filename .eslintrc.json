@@ -29,7 +29,7 @@
       2,
       { "allowShortCircuit": true, "allowTernary": true }
     ],
-
+    "import/no-named-as-default": 0,
     "react/prop-types": "off",
     "consistent-return": "off",
     "no-console": 1,
@@ -38,7 +38,7 @@
     "react/no-array-index-key": 0,
     "react/jsx-one-expression-per-line": 0,
     "operator-linebreak": 0,
-    "react/jsx-closing-tag-location": 0
-
+    "react/jsx-closing-tag-location": 0,
+    "no-shadow": "off"
   }
 }

@@ -9,7 +9,6 @@ function Description({ description }) {
           <p>{line}</p>
           <br />
           <br />
-          <br />
         </React.Fragment>
       ))}
     </div>

@@ -22,13 +22,14 @@ const LocationResult = ({
           </WhereLi>
         ) : (
           datas?.map((item) => {
+            console.log(item);
             return (
-              <WhereLi key={item}>
+              <WhereLi key={item} onClick={() => selectedRegion(item)}>
                 <WLiContent>
                   <Marker>
                     <MarkerIcon className="fas fa-map-marker-alt" />
                   </Marker>
-                  <WhereP onClick={selectedRegion}>{item}</WhereP>
+                  <WhereP>{item}</WhereP>
                 </WLiContent>
               </WhereLi>
             );
