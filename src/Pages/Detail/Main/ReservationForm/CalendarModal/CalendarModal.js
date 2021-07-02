@@ -12,6 +12,7 @@ function CalendarModal({
 }) {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
   const calendarModalRef = useRef(null);
 
   const handleClickOutside = (e) => {
@@ -25,16 +26,47 @@ function CalendarModal({
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
 
-    setStartDate(reservationInfo.checkIn);
-    setEndDate(reservationInfo.checkOut);
-
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
-  const handleClickButton = () => {
+  useEffect(() => {
+    setStartDate(reservationInfo.checkIn);
+    setEndDate(reservationInfo.checkOut);
+  }, [reservationInfo]);
+
+  useEffect(() => {
+    setIsFocused(true);
+  }, [startDate]);
+
+  useEffect(() => {
+    setIsFocused(false);
+  }, [endDate]);
+
+  const handleClickButton = (e) => {
+    if (e.target.name === 'checkInDelete') {
+      handleReservationInfo('', endDate);
+      setStartDate('');
+
+      return;
+    }
+
+    if (e.target.name === 'checkOutDelete') {
+      handleReservationInfo(startDate, '');
+      setEndDate('');
+
+      return;
+    }
     setIsClickedModal((prev) => !prev);
+  };
+
+  const handleClickInput = (e) => {
+    if (e.target.name === 'checkIn') {
+      setIsFocused(true);
+    } else {
+      setIsFocused(false);
+    }
   };
 
   const handleChangeInput = (e) => {
@@ -48,8 +80,8 @@ function CalendarModal({
   const handleBlurInput = (e) => {
     // 날짜 정규표현식 통과
 
-    handleDates(e.target.name, e.target.value);
-    handleReservationInfo(e.target.name, e.target.value);
+    handleDates(startDate, endDate);
+    handleReservationInfo(startDate, endDate);
   };
 
   return (
@@ -83,31 +115,45 @@ function CalendarModal({
           )}
         </Title>
         <DateInputWrapper>
-          <CheckIn checkIn="">
+          <CheckIn isFocused={isFocused}>
             <div>
               <span>체크인</span>
               <input
                 value={startDate}
                 onChange={handleChangeInput}
                 onBlur={handleBlurInput}
+                onClick={handleClickInput}
                 placeholder="날짜 추가"
                 name="checkIn"
               />
             </div>
-            <button type="button">X</button>
+            <button
+              type="button"
+              onClick={handleClickButton}
+              name="checkInDelete"
+            >
+              X
+            </button>
           </CheckIn>
-          <CheckOut checkOut="true">
+          <CheckOut isFocused={!isFocused}>
             <div>
               <span>체크아웃</span>
               <input
                 value={endDate}
                 onChange={handleChangeInput}
                 onBlur={handleBlurInput}
+                onClick={handleClickInput}
                 placeholder="날짜 추가"
                 name="checkOut"
               />
             </div>
-            <button type="button">X</button>
+            <button
+              type="button"
+              onClick={handleClickButton}
+              name="checkOutDelete"
+            >
+              X
+            </button>
           </CheckOut>
         </DateInputWrapper>
       </Header>
@@ -184,12 +230,12 @@ const DateInputWrapper = styled.div`
   border-radius: 12px;
 `;
 
-const CheckIn = styled.form`
+const CheckIn = styled.div`
   display: flex;
   align-items: center;
   width: 50%;
-  border: ${(props) => (props.checkIn ? '2px solid black' : 'none')};
-  border-right: ${(props) => !props.checkIn && 'none'};
+  border: ${(props) => (props.isFocused ? '2px solid black' : 'none')};
+  border-right: ${(props) => !props.isFocused && 'none'};
   border-radius: 10px;
 
   div {
@@ -217,12 +263,12 @@ const CheckIn = styled.form`
   }
 `;
 
-const CheckOut = styled.form`
+const CheckOut = styled.div`
   display: flex;
   align-items: center;
   width: 50%;
-  border: ${(props) => (props.checkOut ? '2px solid black' : 'none')};
-  border-left: ${(props) => !props.checkOut && 'none'};
+  border: ${(props) => (!props.isFocused ? 'none' : '2px solid black')};
+  border-left: ${(props) => !props.isFocused && 'none'};
   border-radius: 10px;
 
   div {

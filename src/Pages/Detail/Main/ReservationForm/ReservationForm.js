@@ -13,6 +13,7 @@ function ReservationForm({
   reservationInfo,
   setIsClickedCommentButton,
   requestReservation,
+  handleReservationGuest,
 }) {
   const [isClickedCountButton, setIsClickedCountButton] = useState(false);
   const [isClickedReservationBtn, setIsClickedReservationBtn] = useState(false);
@@ -29,10 +30,11 @@ function ReservationForm({
     });
   }, []);
 
-  const handleDates = (key, value) => {
+  const handleDates = (start, end) => {
     setDates({
       ...dates,
-      [key]: value,
+      checkIn: start,
+      checkOut: end,
     });
   };
 
@@ -40,7 +42,6 @@ function ReservationForm({
     if (e.target.name === 'reservation') {
       setIsClickedReservationBtn(true);
       requestReservation();
-      console.log(1);
       return;
     }
     if (e.target.name === 'review') {
@@ -54,6 +55,8 @@ function ReservationForm({
   const handleClickInput = () => {
     setIsClickedModal(true);
   };
+
+  console.log(reservationInfo);
 
   return (
     <Form>
@@ -88,6 +91,7 @@ function ReservationForm({
                 <CalendarModal
                   reservationInfo={reservationInfo}
                   handleReservationInfo={handleReservationInfo}
+                  handleReservationGuest={handleReservationGuest}
                   setIsClickedModal={setIsClickedModal}
                   handleDates={handleDates}
                 />
@@ -111,7 +115,7 @@ function ReservationForm({
                 />
               </CheckOut>
             </DateContainer>
-            <PersonnelContainer>
+            <PersonnelContainer onClick={handleClickButton}>
               <Personnel>
                 <span>인원</span>
                 <div>
@@ -123,21 +127,21 @@ function ReservationForm({
                   )}
                 </div>
               </Personnel>
-              <Chevron type="button" onClick={handleClickButton}>
+              <Chevron type="button">
                 {isClickedCountButton ? (
                   <i className="fas fa-chevron-up" />
                 ) : (
                   <i className="fas fa-chevron-down" />
                 )}
               </Chevron>
-              {isClickedCountButton && (
-                <HeadCount
-                  reservationInfo={reservationInfo}
-                  handleReservationInfo={handleReservationInfo}
-                  setIsClickedCountButton={setIsClickedCountButton}
-                />
-              )}
             </PersonnelContainer>
+            {isClickedCountButton && (
+              <HeadCount
+                reservationInfo={reservationInfo}
+                handleReservationGuest={handleReservationGuest}
+                setIsClickedCountButton={setIsClickedCountButton}
+              />
+            )}
           </InfoContainer>
           <ReservationContainer>
             <button
@@ -150,7 +154,7 @@ function ReservationForm({
             {reservationInfo.reservationSuccess && (
               <SuccessMessage>예약이 가능합니다.</SuccessMessage>
             )}
-            {!reservationInfo.isAvailable && (
+            {reservationInfo.isAvailable && (
               <ErrorMessage>예약이 불가능합니다.</ErrorMessage>
             )}
             {reservationInfo.checkIn && reservationInfo.checkOut && (
@@ -214,13 +218,14 @@ ReservationForm.propTypes = {
   handleReservationInfo: PropTypes.func.isRequired,
   setIsClickedCommentButton: PropTypes.func.isRequired,
   requestReservation: PropTypes.func.isRequired,
+  handleReservationGuest: PropTypes.func.isRequired,
 };
 
 export default ReservationForm;
 
 const Form = styled.form`
   position: sticky;
-  top: 30px;
+  top: 100px;
   left: 0;
   width: 35%;
   min-width: 350px;
@@ -328,6 +333,10 @@ const PersonnelContainer = styled.div`
   height: 50px;
   padding: 10px;
   border-top: 1px solid #bbbbbb;
+
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const Personnel = styled.div`
@@ -344,7 +353,7 @@ const Personnel = styled.div`
     align-items: center;
 
     span {
-      margin-top: 5px;
+      margin-top: 1px;
       color: black;
       font-size: 13px;
       font-weight: 500;

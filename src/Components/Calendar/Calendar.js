@@ -8,30 +8,13 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import './Calendar.css';
 
-function Calendar({
-  handleReservationInfo,
-  reservationInfo,
-  setStartDate,
-  setEndDate,
-}) {
+function Calendar({ handleReservationInfo, reservationInfo }) {
   const [focusedInput, setFocusedInput] = useState('startDate');
 
   const handleDatesChange = ({ startDate, endDate }) => {
-    if (startDate) {
-      if (setStartDate) {
-        setStartDate(startDate.format('YYYY-MM-DD'));
-      }
-
-      handleReservationInfo('checkIn', startDate.format('YYYY-MM-DD'));
-    }
-
-    if (endDate) {
-      if (setEndDate) {
-        setEndDate(endDate.format('YYYY-MM-DD'));
-      }
-
-      handleReservationInfo('checkOut', endDate.format('YYYY-MM-DD'));
-    }
+    const newStart = startDate ? startDate.format('YYYY-MM-DD') : '';
+    const newEnd = endDate ? endDate.format('YYYY-MM-DD') : '';
+    handleReservationInfo(newStart, newEnd);
   };
 
   const handleFocusChange = () => {
@@ -41,7 +24,6 @@ function Calendar({
       setFocusedInput('startDate');
     }
   };
-
   return (
     <CalendarWrapper>
       <DayPickerRangeController
@@ -54,7 +36,6 @@ function Calendar({
         onDatesChange={handleDatesChange}
         focusedInput={focusedInput}
         onFocusChange={handleFocusChange}
-        // isDayBlocked={}
         numberOfMonths={2}
       />
     </CalendarWrapper>
@@ -70,8 +51,6 @@ Calendar.propTypes = {
     kids: PropTypes.number.isRequired,
     baby: PropTypes.number.isRequired,
   }).isRequired,
-  setStartDate: PropTypes.func.isRequired,
-  setEndDate: PropTypes.func.isRequired,
 };
 
 export default Calendar;

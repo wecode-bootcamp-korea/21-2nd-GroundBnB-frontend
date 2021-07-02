@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 
-function ScrollModal({ children, closeModal, setComments, comments }) {
+function ScrollModal({ children, closeModal, setComments, comments, id }) {
   const modalRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
   const [offset, setOffset] = useState(1);
@@ -17,19 +17,17 @@ function ScrollModal({ children, closeModal, setComments, comments }) {
   }, []);
 
   const requestMoreComments = async () => {
-    // console.log(offset);
     try {
       setIsLoading(true);
       const res = await fetch(
-        `http://10.58.3.69:8000/rooms/reviews?search=&room_id=${1}&offset=${offset}&limit=10`,
+        `http://10.58.3.69:8000/rooms/reviews?search=&room_id=${id}&offset=${offset}&limit=10`,
         {
           method: 'GET',
+          headers: {
+            Authorization: localStorage.getItem('token'),
+          },
         },
       );
-
-      // const res = await fetch('/Data/comment.json', {
-      //   method: 'GET',
-      // });
 
       const data = await res.json();
       if (offset === 1) {
@@ -41,7 +39,6 @@ function ScrollModal({ children, closeModal, setComments, comments }) {
       setComments({
         ...comments,
         comment: comments.comment.concat(data.reviews.comment),
-        // comment: [...comments.comment, ...data.reviews.comment],
       });
 
       setIsLoading(false);
@@ -57,7 +54,6 @@ function ScrollModal({ children, closeModal, setComments, comments }) {
   const handleInfiniteScroll = () => {
     const modal = modalRef.current;
     const { scrollHeight, scrollTop, clientHeight } = modal;
-    // console.log(scrollHeight, scrollTop, clientHeight);
 
     if (scrollTop + clientHeight >= scrollHeight && !isLoading) {
       setOffset((prev) => prev + 1);
@@ -66,7 +62,7 @@ function ScrollModal({ children, closeModal, setComments, comments }) {
   useEffect(() => {
     const modal = modalRef.current;
     modal.addEventListener('scroll', handleInfiniteScroll);
-    // setOffset((prev) => prev + 1);
+
     return () => {
       modal.removeEventListener('scroll', handleInfiniteScroll);
     };

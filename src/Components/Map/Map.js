@@ -104,7 +104,7 @@ function Map({ rooms: coords }) {
 
   useEffect(() => {
     if (map) {
-      coords.forEach((point) => addMarkers(point));
+      coords?.forEach((point) => addMarkers(point));
     }
   }, [map]);
 

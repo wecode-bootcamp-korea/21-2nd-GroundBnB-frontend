@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Facilities from './Facilities/Facilities';
@@ -6,6 +6,7 @@ import Calendar from '../../../Components/Calendar/Calendar';
 import Comments from './Review/Comments/Comments';
 import ReservationForm from './ReservationForm/ReservationForm';
 import Description from './Description/Description';
+import Map from '../../../Components/Map/Map';
 
 function Main({
   hostName,
@@ -19,27 +20,14 @@ function Main({
   pointAverage,
   reviewCount,
   price,
+  rooms,
   reservationInfo,
   handleReservationInfo,
   setIsClickedDescriptionButton,
   setIsClickedCommentButton,
   requestReservation,
+  handleReservationGuest,
 }) {
-  // const [reservationInfo, setReservationInfo] = useState({
-  //   checkIn: '',
-  //   checkOut: '',
-  //   adult: 0,
-  //   child: 0,
-  //   baby: 0,
-  // });
-
-  // const handleReservationInfo = (key, value) => {
-  //   setReservationInfo({
-  //     ...reservationInfo,
-  //     [key]: value,
-  //   });
-  // };
-
   const handleClickButton = (e) => {
     if (
       e.target.parentNode.name === 'descriptionButton' ||
@@ -99,7 +87,6 @@ function Main({
             <Calendar
               handleReservationInfo={handleReservationInfo}
               reservationInfo={reservationInfo}
-              // setReservationInfo={setReservationInfo}
             />
           </LeftWrapper>
           <RightWrapper>
@@ -111,6 +98,7 @@ function Main({
               reservationInfo={reservationInfo}
               setIsClickedCommentButton={setIsClickedCommentButton}
               requestReservation={requestReservation}
+              handleReservationGuest={handleReservationGuest}
             />
           </RightWrapper>
         </TopWrapper>
@@ -121,11 +109,13 @@ function Main({
           reviewCount={reviewCount}
           setIsClickedCommentButton={setIsClickedCommentButton}
         />
-        <CommentButton
-          type="button"
-          onClick={handleClickButton}
-        >{`후기 ${reviewCount}개 모두 보기`}</CommentButton>
-        {/* <Map /> */}
+        <CommentButtonWrapper>
+          <CommentButton
+            type="button"
+            onClick={handleClickButton}
+          >{`후기 ${reviewCount}개 모두 보기`}</CommentButton>
+        </CommentButtonWrapper>
+        <Map rooms={rooms} />
       </MainContainer>
     </>
   );
@@ -176,6 +166,7 @@ Main.propTypes = {
   setIsClickedDescriptionButton: PropTypes.func.isRequired,
   setIsClickedCommentButton: PropTypes.func.isRequired,
   requestReservation: PropTypes.func.isRequired,
+  handleReservationGuest: PropTypes.func.isRequired,
 };
 
 export default Main;
@@ -264,9 +255,16 @@ const DescriptionWrapper = styled.div`
   }
 `;
 
+const CommentButtonWrapper = styled.div`
+  width: 100%;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #dfdfdf;
+`;
+
 const CommentButton = styled.button`
   width: 150px;
   height: 50px;
+  margin-bottom: 30px;
   border: 1px solid black;
   border-radius: 10px;
   font-weight: 500;
