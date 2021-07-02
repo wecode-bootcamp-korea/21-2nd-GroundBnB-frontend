@@ -15,7 +15,6 @@ import { API } from '../../config';
 function Detail() {
   const [item, setItem] = useState([]);
   const [comments, setComments] = useState({});
-  const [rooms, setRooms] = useState({});
   const [isClickedImageButton, setIsClickedImageButton] = useState(false);
   const [isClickedDescriptionButton, setIsClickedDescriptionButton] =
     useState(false);
@@ -36,44 +35,10 @@ function Detail() {
       reservationCompleted: false,
       reservationFailed: false,
     });
-    // const rooms = {
-    //   geo: { lat: 1, lng:1 }
-    // }
   }, []);
-
-  // const fetchComment = async () => {
-  //   try {
-  //     const res = await fetch('/Data/comment.json', {
-  //       method: 'GET',
-  //     });
-
-  //     // const res = await fetch(`http://10.58.6.210:8000/rooms/reviews?room_id=${id}`, {
-  //     //   method: 'GET',
-  //     // });
-
-  //     const data = await res.json();
-  //     // console.log(data);
-  //     setComments(data.reviews);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
 
   const fetchItem = async () => {
     try {
-      // const res = await fetch('/Data/room.json', {
-      //   method: 'GET',
-      // const res = await fetch('/Data/room.json', {
-      //   method: 'GET',
-      // });
-
-      // const res = await fetch(`http://10.58.7.23:8000/rooms/${id}`, {
-      //   method: 'GET',
-      //   headers: {
-      //     Authorization: localStorage.getItem('token'),
-      //   },
-      // });
-
       const res = await fetch(`${API}/${id}`, {
         method: 'GET',
         headers: {
@@ -82,9 +47,7 @@ function Detail() {
       });
 
       const data = await res.json();
-      // console.log(data.result);
-      // console.log(data.result);
-      // setItem(data.result);
+      console.log(data);
 
       setItem(data.result);
     } catch (err) {
@@ -94,13 +57,20 @@ function Detail() {
 
   useEffect(() => {
     fetchItem();
-    // setReservationInfo()
   }, []);
 
   console.log(item);
 
   const requestReservation = async () => {
     try {
+      console.log({
+        check_in_date: reservationInfo.checkIn,
+        check_out_date: reservationInfo.checkOut,
+        adult: reservationInfo.adult,
+        kids: reservationInfo.kids,
+        baby: reservationInfo.baby,
+        room_id: id,
+      });
       const res = await fetch(`${API}/order`, {
         method: 'POST',
         headers: {
@@ -117,6 +87,7 @@ function Detail() {
       });
 
       const result = await res.json();
+      console.log(result);
 
       if (result.MESSAGE === 'SUCCESS') {
         setReservationInfo({
@@ -136,17 +107,6 @@ function Detail() {
           reservationCompleted: false,
           reservationFailed: false,
         });
-        //   setReservationInfo({
-        //     ...reservationInfo,
-        //     reservationCompleted: false,
-        //     reservationFailed: true,
-        //   });
-        // } else {
-        //   setReservationInfo({
-        //     ...reservationInfo,
-        //     reservationCompleted: false,
-        //     reservationFailed: false,
-        //   });
         throw new Error('예약 실패');
       }
     } catch (err) {
@@ -340,6 +300,8 @@ function Detail() {
     }
   };
 
+  console.log(item);
+
   return (
     <>
       {isClickedImageButton && (
@@ -403,7 +365,7 @@ function Detail() {
                 price={item[0].price}
                 rooms={[
                   {
-                    geo: { lat: item[0].latitude, lng: item[0].longitude },
+                    geo: { lat: item[0].lat, lng: item[0].lng },
                     room_images: [item[0].images[0]],
                     room_name: item[0].title,
                     address: item[0].address,

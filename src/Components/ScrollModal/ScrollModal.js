@@ -22,7 +22,7 @@ function ScrollModal({ children, closeModal, setComments, comments, id }) {
       setIsLoading(true);
       const res = await fetch(
         `${API}/reviews?search=&room_id=${id}&offset=${offset}&limit=10`,
-        // `http://10.58.3.69:8000/rooms/reviews?search=&room_id=${id}&offset=${offset}&limit=10`,
+        // 'http://10.58.3.69:8000/rooms/reviews?room_id=1',
         {
           method: 'GET',
           headers: {
@@ -32,6 +32,8 @@ function ScrollModal({ children, closeModal, setComments, comments, id }) {
       );
 
       const data = await res.json();
+      console.log(data);
+
       if (offset === 1) {
         setComments(data.reviews);
         setIsLoading(false);

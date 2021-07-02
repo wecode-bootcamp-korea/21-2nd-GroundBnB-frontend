@@ -15,6 +15,7 @@ const LocationInput = ({ setInputValue }) => {
   };
 
   const selectedRegion = (e) => {
+    // console.log(value);
     const value = e.target.innerText;
 
     setInputValue(value);
@@ -30,7 +31,6 @@ const LocationInput = ({ setInputValue }) => {
 
     value.length &&
       fetch(`${API}/searchword?search=${value}`, {
-        // fetch(`${GET_INPUTTED_ROOMS_API}?search=${value}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -42,6 +42,11 @@ const LocationInput = ({ setInputValue }) => {
         });
   };
 
+  const handleBlurInput = () => {
+    toggleWhereShow();
+  };
+
+  console.log(place);
   return (
     <>
       <WhereWrap onClick={toggleWhereShow}>
@@ -52,8 +57,8 @@ const LocationInput = ({ setInputValue }) => {
               id="where"
               value={place}
               onChange={changeInputTxt}
+              onBlur={handleBlurInput}
               placeholder="어디로 여행가세요?"
-              autoComplete="off"
             />
           </WhereLabel>
         </WhereContent>

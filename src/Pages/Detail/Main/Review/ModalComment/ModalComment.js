@@ -28,7 +28,6 @@ function ModalComment({
 
   const handleClickButton = (e) => {
     if (e.target.name === 'modify') {
-      console.log('modify', reviewId);
       setIsOpenedEditForm((prev) => !prev);
 
       return;
@@ -41,7 +40,6 @@ function ModalComment({
     }
 
     if (e.target.name === 'writeReviewComment') {
-      console.log('writeReviewComment', reviewId);
       setIsOpenedCommentForm((prev) => !prev);
     }
   };
@@ -50,7 +48,7 @@ function ModalComment({
     <CommentWrapper depth={depth} mineComment={mineComment}>
       <Title>
         <Image>
-          <img alt="#" src={profileImage} />
+          <img alt="#" src="/images/profile2.jpeg" />
         </Image>
         <Profile>
           <div>

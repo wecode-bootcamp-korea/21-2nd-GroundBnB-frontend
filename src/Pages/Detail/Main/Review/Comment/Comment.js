@@ -7,7 +7,7 @@ function Comment({ name, createdAt, content, profileImage }) {
     <CommentWrapper>
       <Title>
         <Image>
-          <img alt="#" src={profileImage} />
+          <img alt="#" src="/images/profile1.jpeg" />
         </Image>
         <Profile>
           <div>

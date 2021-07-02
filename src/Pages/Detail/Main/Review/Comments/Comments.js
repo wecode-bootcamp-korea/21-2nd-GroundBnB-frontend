@@ -18,8 +18,8 @@ function Comments({ pointAverage, points, reviews, reviewCount, images }) {
           <ReviewItem key={index}>
             <span>{point.name}</span>
             <ReviewBarWrapper>
-              <ReviewBar point={point.point} />
-              <span>{point.point}</span>
+              <ReviewBar point={point.points} />
+              <span>{point.points}</span>
             </ReviewBarWrapper>
           </ReviewItem>
         ))}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { API } from '../../config';
-import { GET_SUBMIT_SEARCHED_ROOMS_API } from '../../config';
+// import { GET_SUBMIT_SEARCHED_ROOMS_API } from '../../config';
 import Map from '../../Components/Map/Map';
 
 function Result() {
