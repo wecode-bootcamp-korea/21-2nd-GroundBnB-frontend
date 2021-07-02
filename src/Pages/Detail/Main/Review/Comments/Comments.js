@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Comment from '../Comment/Comment';
 import ReviewBar from '../ReviewBar/ReviewBar';
 
-function Comments({ pointAverage, points, reviews, reviewCount }) {
+function Comments({ pointAverage, points, reviews, reviewCount, images }) {
   return (
     <CommentsContainer>
       <ReviewTitle>
@@ -33,6 +33,7 @@ function Comments({ pointAverage, points, reviews, reviewCount }) {
               createdAt={review.created_at}
               content={review.content}
               reviewId={review.review_id}
+              profileImage={review.profile_image}
             />
           ))
           .slice(0, 6)}

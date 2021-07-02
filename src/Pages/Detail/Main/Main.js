@@ -20,6 +20,7 @@ function Main({
   pointAverage,
   reviewCount,
   price,
+  images,
   rooms,
   reservationInfo,
   handleReservationInfo,
@@ -103,6 +104,7 @@ function Main({
           </RightWrapper>
         </TopWrapper>
         <Comments
+          images={images}
           pointAverage={pointAverage}
           points={points}
           reviews={reviews}

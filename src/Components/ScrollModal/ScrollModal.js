@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
+import { API } from '../../config';
 
 function ScrollModal({ children, closeModal, setComments, comments, id }) {
   const modalRef = useRef(null);
@@ -20,7 +21,7 @@ function ScrollModal({ children, closeModal, setComments, comments, id }) {
     try {
       setIsLoading(true);
       const res = await fetch(
-        `http://10.58.3.69:8000/rooms/reviews?search=&room_id=${id}&offset=${offset}&limit=10`,
+        `${API}/reviews?search=&room_id=${id}&offset=${offset}&limit=10`,
         {
           method: 'GET',
           headers: {

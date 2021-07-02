@@ -50,7 +50,7 @@ function ModalComment({
     <CommentWrapper depth={depth} mineComment={mineComment}>
       <Title>
         <Image>
-          <img alt="#" src="/Images/profile2.jpeg" />
+          <img alt="#" src={profileImage} />
         </Image>
         <Profile>
           <div>

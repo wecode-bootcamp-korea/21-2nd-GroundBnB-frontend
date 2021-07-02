@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-function Comment({ name, createdAt, content }) {
+function Comment({ name, createdAt, content, profileImage }) {
   return (
     <CommentWrapper>
       <Title>
         <Image>
-          <img alt="#" src="/Images/profile2.jpeg" />
+          <img alt="#" src={profileImage} />
         </Image>
         <Profile>
           <div>

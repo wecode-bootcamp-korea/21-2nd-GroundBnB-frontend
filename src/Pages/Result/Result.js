@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { GET_SEARCHED_ROOMS_API } from '../../config';
+import { API } from '../../config';
 import Map from '../../Components/Map/Map';
 
 function Result() {
@@ -8,7 +8,7 @@ function Result() {
   const [roomData, setRoomData] = useState([]);
 
   useEffect(() => {
-    fetch(`${GET_SEARCHED_ROOMS_API}${location.search}`, {
+    fetch(`${API}${location.search}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     })

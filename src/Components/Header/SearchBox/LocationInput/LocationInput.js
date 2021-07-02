@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { GET_SEARCHED_ROOMS_API } from '../../../../config';
+import { API } from '../../../../config';
 import LocationResult from './LocationResult/LocationResult';
 
 const LocationInput = ({ setInputValue }) => {
@@ -28,7 +28,7 @@ const LocationInput = ({ setInputValue }) => {
     setIsResultShow(value.length > 0);
 
     value.length &&
-      fetch(`${GET_SEARCHED_ROOMS_API}/searchword?search=${value}`, {
+      fetch(`${API}/searchword?search=${value}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
