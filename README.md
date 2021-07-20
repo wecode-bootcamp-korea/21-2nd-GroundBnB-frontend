@@ -2,9 +2,14 @@
 
 > ## 😎 Our Reference : https://www.airbnb.co.kr/
 
+## 📎Project Video Link
+
+> ## https://www.youtube.com/watch?v=nb_UiJRXuQc
+
 ## 💬 프로젝트 개요
 숙박 예약 사이트 AirBnb클론
 - 세계 최대 숙소 예약 포털 사이트 [에어비앤비](https://www.airbnb.co.kr/) 클론 프로젝트
+
 
 
 ### 프로젝트 선정이유
