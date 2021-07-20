@@ -48,20 +48,6 @@
 
 - Terello, Slack, Git
 
-### 내가() 구현한 것들
-- 메인 페이지:  
-  - Header 컴포넌트
-  - 검색바 in Nav 컴포넌트
-  - 입력 시 마다 검색 api 호출 기능 구현
-  - 검색 버튼 클릭 시 리스트 페이지로 라우팅 구현
-  -  Kakao social login 구현
-
-- 검색 결과 리스트 페이지 : 
-  - useEffect를 사용한 google map api 호출 기능 구현
-  - marker 클릭 시 infoWindow 출력 기능 구현
-  - infoWindow 클릭 시 출력될 단일 카드 컴포넌트(해당 숙소) 구현
-  - 카드 컴포넌트 클릭 시 숙소 상세 페이지로 라우팅 기능
-
 ### 전체 구현 기능
 
 #### 메인페이지
