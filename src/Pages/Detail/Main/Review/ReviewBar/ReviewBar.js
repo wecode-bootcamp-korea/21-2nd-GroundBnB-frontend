@@ -20,7 +20,6 @@ export default ReviewBar;
 const ReviewBarWrapper = styled.div`
   position: relative;
   width: 120px;
-  /* min-width: 200px; */
   height: 4px;
   margin: 0 30px 5px 0;
 `;

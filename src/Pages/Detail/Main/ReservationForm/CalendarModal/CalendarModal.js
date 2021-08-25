@@ -78,8 +78,6 @@ function CalendarModal({
   };
 
   const handleBlurInput = (e) => {
-    // 날짜 정규표현식 통과
-
     handleDates(startDate, endDate);
     handleReservationInfo(startDate, endDate);
   };

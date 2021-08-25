@@ -56,8 +56,6 @@ function ReservationForm({
     setIsClickedModal(true);
   };
 
-  console.log(reservationInfo);
-
   return (
     <Form>
       <FormMain>

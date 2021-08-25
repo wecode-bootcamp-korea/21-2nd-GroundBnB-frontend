@@ -19,7 +19,6 @@ function EditForm({
   }, []);
 
   const handleChangeTextArea = (e) => {
-    // console.log(e.target.value);
     setModifiedValue(e.target.value);
   };
 
@@ -31,7 +30,7 @@ function EditForm({
       setIsOpenedEditForm((prev) => !prev);
     }
   };
-  // console.log(fixedValue);
+
   return (
     <CommentWrapper>
       <TextAreaWrapper>

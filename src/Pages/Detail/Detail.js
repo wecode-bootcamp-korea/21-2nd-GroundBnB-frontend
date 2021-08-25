@@ -36,7 +36,7 @@ function Detail() {
       reservationFailed: false,
     });
   }, []);
-  console.log(1);
+
   const fetchItem = async () => {
     try {
       const res = await fetch(`${API}/${id}`, {
@@ -47,7 +47,6 @@ function Detail() {
       });
 
       const data = await res.json();
-      console.log(data);
 
       setItem(data.result);
     } catch (err) {
@@ -59,18 +58,8 @@ function Detail() {
     fetchItem();
   }, []);
 
-  console.log(item);
-
   const requestReservation = async () => {
     try {
-      console.log({
-        check_in_date: reservationInfo.checkIn,
-        check_out_date: reservationInfo.checkOut,
-        adult: reservationInfo.adult,
-        kids: reservationInfo.kids,
-        baby: reservationInfo.baby,
-        room_id: id,
-      });
       const res = await fetch(`${API}/order`, {
         method: 'POST',
         headers: {
@@ -87,7 +76,6 @@ function Detail() {
       });
 
       const result = await res.json();
-      console.log(result);
 
       if (result.MESSAGE === 'SUCCESS') {
         setReservationInfo({
@@ -131,34 +119,16 @@ function Detail() {
 
   const requestModifyComment = async (reviewId, content) => {
     try {
-      // <<<<<<< HEAD
-      //       const res = await fetch(`${API}/reviews?room_id=${id}`, {
-      //         method: 'PATCH',
-      //         headers: {
-      //           Authorization: localStorage.getItem('token'),
-
-      //       console.log(reviewId, content);
-
-      const res = await fetch(
-        `http://10.58.3.69:8000/rooms/reviews?room_id=${id}`,
-        {
-          method: 'PATCH',
-          headers: {
-            Authorization: localStorage.getItem('token'),
-          },
-          body: JSON.stringify({
-            review_id: reviewId,
-            content,
-          }),
+      const res = await fetch(`${API}/reviews?room_id=${id}`, {
+        method: 'PATCH',
+        headers: {
+          Authorization: localStorage.getItem('token'),
         },
-      );
-      // >>>>>>> master
-      //   },
-      //   body: JSON.stringify({
-      //     review_id: reviewId,
-      //     content,
-      //   }),
-      // });
+        body: JSON.stringify({
+          review_id: reviewId,
+          content,
+        }),
+      });
 
       const data = await res.json();
 
@@ -185,35 +155,18 @@ function Detail() {
 
   const requestAddComment = async (userId, group = null, content) => {
     try {
-      // <<<<<<< HEAD
-      // const res = await fetch(`${API}/reviews?room_id=${id}`, {
-      //   method: 'POST',
-      //   headers: {
-      //     Authorization: localStorage.getItem('token'),
-
-      const res = await fetch(
-        `http://10.58.3.69:8000/rooms/reviews?room_id=${id}`,
-        {
-          method: 'POST',
-          headers: {
-            Authorization: localStorage.getItem('token'),
-          },
+      const res = await fetch(`${API}/reviews?room_id=${id}`, {
+        method: 'POST',
+        headers: {
+          Authorization: localStorage.getItem('token'),
           body: JSON.stringify({
             room_id: comments.room_id,
             user_id: userId,
             group_id: group,
             content,
           }),
-          // >>>>>>> master
         },
-      );
-      // body: JSON.stringify({
-      //   room_id: comments.room_id,
-      //   user_id: userId,
-      //   group_id: group,
-      //   content,
-      // }),
-      // });
+      });
 
       const data = await res.json();
 
@@ -256,29 +209,15 @@ function Detail() {
 
   const requestDeleteComment = async (reviewId) => {
     try {
-      // <<<<<<< HEAD
-      //       const res = await fetch(`${API}/reviews?review_id=${reviewId}`, {
-      //         method: 'DELETE',
-      //         headers: {
-      //           Authorization: localStorage.getItem('token'),
-      // =======
-      const res = await fetch(
-        `http://10.58.3.69:8000/rooms/reviews?review_id=${reviewId}`,
-        {
-          method: 'DELETE',
-          headers: {
-            Authorization: localStorage.getItem('token'),
-          },
-          body: JSON.stringify({
-            review_id: reviewId,
-          }),
-          // >>>>>>> master
-          // },
-          // body: JSON.stringify({
-          //   review_id: reviewId,
-          // }),
+      const res = await fetch(`${API}/reviews?review_id=${reviewId}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: localStorage.getItem('token'),
         },
-      );
+        body: JSON.stringify({
+          review_id: reviewId,
+        }),
+      });
 
       const data = await res.json();
 
@@ -299,8 +238,6 @@ function Detail() {
       console.error(err);
     }
   };
-
-  console.log(item);
 
   return (
     <>
