@@ -2,9 +2,14 @@
 
 > ## 😎 Our Reference : https://www.airbnb.co.kr/
 
+## 📎Project Video Link
+
+> ## https://www.youtube.com/watch?v=nb_UiJRXuQc
+
 ## 💬 프로젝트 개요
 숙박 예약 사이트 AirBnb클론
 - 세계 최대 숙소 예약 포털 사이트 [에어비앤비](https://www.airbnb.co.kr/) 클론 프로젝트
+
 
 
 ### 프로젝트 선정이유
@@ -43,7 +48,7 @@
 
 - Terello, Slack, Git
 
-### 구현 기능
+### 전체 구현 기능
 
 #### 메인페이지
  - 검색(연관 검색어), Calendar
@@ -58,7 +63,7 @@
  - 숙소 평점별 표시
  - 예약하기
  - 댓글
- 
+
 ## Reference
 
 - 이 프로젝트는 [에어비앤비](https://www.airbnb.co.kr/) 사이트를 참조하여 학습목적으로 만들었습니다.
